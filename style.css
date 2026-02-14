@@ -1,0 +1,134 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fad0c4 100%);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 20px;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 24px;
+  padding: 2.5rem;
+  text-align: center;
+  max-width: 420px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  position: relative;
+}
+
+.question {
+  color: #c71585;
+  font-size: 1.75rem;
+  margin-bottom: 1.25rem;
+  line-height: 1.3;
+}
+
+.question.hidden,
+.buttons.hidden,
+.raccoon-wrap.hidden,
+.sub.hidden,
+.second-page.hidden {
+  display: none;
+}
+
+.second-page {
+  display: block;
+}
+
+.second-page .second-page-img {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  margin-bottom: 1rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.raccoon-wrap {
+  margin: 1rem 0;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.raccoon {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.sub {
+  color: #666;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  position: relative;
+  min-height: 120px;
+}
+
+.btn {
+  padding: 0.75rem 1.75rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.btn-yes {
+  background: linear-gradient(145deg, #e91e63, #c2185b);
+  color: white;
+  box-shadow: 0 4px 14px rgba(233, 30, 99, 0.4);
+}
+
+.btn-yes:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(233, 30, 99, 0.5);
+}
+
+.btn-no {
+  background: #f5f5f5;
+  color: #666;
+  position: absolute;
+  left: calc(50% + 3rem);
+  top: 0;
+  transform: translateX(-50%);
+  transition: left 0.2s ease, top 0.2s ease;
+}
+
+.result {
+  margin-top: 1rem;
+  font-size: 1.25rem;
+  color: #c71585;
+  font-weight: bold;
+}
+
+.result.hidden {
+  display: none;
+}
+
+.result.show {
+  display: block;
+  animation: pop 0.4s ease;
+}
+
+@keyframes pop {
+  0% { transform: scale(0.8); opacity: 0; }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); opacity: 1; }
+}
