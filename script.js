@@ -31,6 +31,46 @@
     }, 4500);
   }
 
+  var secondPageFall = document.getElementById('secondPageFall');
+  var FALL_PHOTOS = 20;
+  var fallIntervalId = null;
+
+  function createFallingItem() {
+    if (!secondPageFall || secondPageFall.classList.contains('hidden')) return;
+    var isHeart = Math.random() < 0.4;
+    var el;
+    var duration = 5 + Math.random() * 6;
+    var left = Math.random() * 100;
+    if (isHeart) {
+      el = document.createElement('span');
+      el.className = 'falling-mini heart-mini';
+      el.textContent = HEARTS[Math.floor(Math.random() * HEARTS.length)];
+      el.style.left = left + 'vw';
+      el.style.animationDuration = duration + 's';
+    } else {
+      var num = 1 + Math.floor(Math.random() * FALL_PHOTOS);
+      el = document.createElement('img');
+      el.className = 'falling-mini';
+      el.src = 'assets/fall' + num + '.png';
+      el.alt = '';
+      el.style.left = left + 'vw';
+      el.style.width = (50 + Math.random() * 40) + 'px';
+      el.style.animationDuration = duration + 's';
+    }
+    secondPageFall.appendChild(el);
+    setTimeout(function () {
+      el.remove();
+    }, duration * 1000 + 500);
+  }
+
+  function startSecondPageFall() {
+    secondPageFall.classList.remove('hidden');
+    createFallingItem();
+    createFallingItem();
+    if (fallIntervalId) clearInterval(fallIntervalId);
+    fallIntervalId = setInterval(createFallingItem, 600);
+  }
+
   btnYes.addEventListener('click', function () {
     for (var i = 0; i < 50; i++) {
       createHeartFall();
@@ -40,6 +80,7 @@
     raccoonWrap.classList.add('hidden');
     sub.classList.add('hidden');
     secondPage.classList.remove('hidden');
+    startSecondPageFall();
   });
 
   function moveNoButton() {

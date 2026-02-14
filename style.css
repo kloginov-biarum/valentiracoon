@@ -22,6 +22,45 @@ body {
   max-width: 420px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
   position: relative;
+  z-index: 10;
+}
+
+/* Падающие миниатюры и сердечки на второй странице */
+.second-page-fall {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.second-page-fall.hidden {
+  display: none;
+}
+
+.falling-mini {
+  position: absolute;
+  top: -80px;
+  animation: fallDown linear forwards;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.falling-mini.heart-mini {
+  font-size: 1.5rem;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+@keyframes fallDown {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.95;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0.3;
+  }
 }
 
 .question {
@@ -35,7 +74,8 @@ body {
 .buttons.hidden,
 .raccoon-wrap.hidden,
 .sub.hidden,
-.second-page.hidden {
+.second-page.hidden,
+.second-page-fall.hidden {
   display: none;
 }
 
@@ -49,6 +89,11 @@ body {
   border-radius: 16px;
   margin-bottom: 1rem;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.second-page .collage {
+  margin-top: 0.5rem;
+  margin-bottom: 0;
 }
 
 .raccoon-wrap {
