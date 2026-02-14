@@ -95,25 +95,41 @@
   }
 
   btnNo.addEventListener('mouseenter', moveNoButton);
+  btnNo.addEventListener('touchstart', function (e) {
+    moveNoButton();
+    e.preventDefault();
+  }, { passive: false });
   btnNo.addEventListener('click', function (e) {
     e.preventDefault();
     moveNoButton();
   });
+
+  function addHeartTrail(x, y) {
+    var heart = HEARTS[Math.floor(Math.random() * HEARTS.length)];
+    var el = document.createElement('span');
+    el.className = 'heart-trail';
+    el.textContent = heart;
+    el.style.left = x + 'px';
+    el.style.top = y + 'px';
+    document.body.appendChild(el);
+    setTimeout(function () {
+      el.remove();
+    }, 800);
+  }
 
   document.addEventListener('mousemove', function (e) {
     if (!isFirstPage()) return;
     var now = Date.now();
     if (now - trailLast < trailThrottle) return;
     trailLast = now;
-    var heart = HEARTS[Math.floor(Math.random() * HEARTS.length)];
-    var el = document.createElement('span');
-    el.className = 'heart-trail';
-    el.textContent = heart;
-    el.style.left = e.clientX + 'px';
-    el.style.top = e.clientY + 'px';
-    document.body.appendChild(el);
-    setTimeout(function () {
-      el.remove();
-    }, 800);
+    addHeartTrail(e.clientX, e.clientY);
   });
+
+  document.addEventListener('touchmove', function (e) {
+    if (!isFirstPage() || !e.touches.length) return;
+    var now = Date.now();
+    if (now - trailLast < trailThrottle) return;
+    trailLast = now;
+    addHeartTrail(e.touches[0].clientX, e.touches[0].clientY);
+  }, { passive: true });
 })();

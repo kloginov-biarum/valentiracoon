@@ -224,3 +224,72 @@ body {
     opacity: 0;
   }
 }
+
+/* Адаптив для мобильных */
+@media (max-width: 600px) {
+  body {
+    padding: 12px;
+    min-height: 100dvh;
+    align-items: flex-start;
+    padding-top: max(12px, env(safe-area-inset-top));
+    padding-bottom: max(12px, env(safe-area-inset-bottom));
+    padding-left: max(12px, env(safe-area-inset-left));
+    padding-right: max(12px, env(safe-area-inset-right));
+  }
+
+  .card {
+    width: 100%;
+    max-width: none;
+    padding: 1.5rem;
+    border-radius: 20px;
+    margin: 0 auto;
+  }
+
+  .raccoon-wrap {
+    margin: 0.75rem 0;
+    border-radius: 12px;
+  }
+
+  .sub {
+    margin-bottom: 1.25rem;
+    font-size: 0.9rem;
+  }
+
+  .buttons {
+    min-height: 55vh;
+    min-height: 55dvh;
+    padding: 0.5rem 0;
+  }
+
+  .btn {
+    min-height: 48px;
+    min-width: 48px;
+    padding: 0.875rem 1.75rem;
+    font-size: 1.15rem;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  .btn-no {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .second-page .second-page-img,
+  .second-page .collage {
+    border-radius: 12px;
+  }
+
+  .result {
+    font-size: 1.15rem;
+  }
+
+  .falling-mini:not(.heart-mini) {
+    max-width: 70px;
+  }
+
+  .heart-fall {
+    font-size: 1.25rem;
+  }
+}
