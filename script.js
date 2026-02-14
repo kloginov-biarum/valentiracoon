@@ -7,8 +7,34 @@
   var raccoonWrap = document.querySelector('.raccoon-wrap');
   var sub = document.querySelector('.sub');
   var secondPage = document.getElementById('secondPage');
+  var heartsCelebration = document.getElementById('heartsCelebration');
+
+  var HEARTS = ['❤', '💕', '💗', '💖', '💝', '♥'];
+  var trailLast = 0;
+  var trailThrottle = 80;
+
+  function isFirstPage() {
+    return secondPage.classList.contains('hidden');
+  }
+
+  function createHeartFall() {
+    var heart = HEARTS[Math.floor(Math.random() * HEARTS.length)];
+    var el = document.createElement('span');
+    el.className = 'heart-fall';
+    el.textContent = heart;
+    el.style.left = Math.random() * 100 + 'vw';
+    el.style.animationDuration = (2 + Math.random() * 2) + 's';
+    el.style.animationDelay = Math.random() * 0.5 + 's';
+    heartsCelebration.appendChild(el);
+    setTimeout(function () {
+      el.remove();
+    }, 4500);
+  }
 
   btnYes.addEventListener('click', function () {
+    for (var i = 0; i < 50; i++) {
+      createHeartFall();
+    }
     question.classList.add('hidden');
     buttons.classList.add('hidden');
     raccoonWrap.classList.add('hidden');
@@ -31,5 +57,22 @@
   btnNo.addEventListener('click', function (e) {
     e.preventDefault();
     moveNoButton();
+  });
+
+  document.addEventListener('mousemove', function (e) {
+    if (!isFirstPage()) return;
+    var now = Date.now();
+    if (now - trailLast < trailThrottle) return;
+    trailLast = now;
+    var heart = HEARTS[Math.floor(Math.random() * HEARTS.length)];
+    var el = document.createElement('span');
+    el.className = 'heart-trail';
+    el.textContent = heart;
+    el.style.left = e.clientX + 'px';
+    el.style.top = e.clientY + 'px';
+    document.body.appendChild(el);
+    setTimeout(function () {
+      el.remove();
+    }, 800);
   });
 })();

@@ -132,3 +132,50 @@ body {
   50% { transform: scale(1.05); }
   100% { transform: scale(1); opacity: 1; }
 }
+
+/* Падающие сердечки при нажатии YES */
+.hearts-celebration {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.heart-fall {
+  position: absolute;
+  font-size: 1.5rem;
+  animation: heartFall linear forwards;
+  opacity: 0.9;
+}
+
+@keyframes heartFall {
+  0% {
+    transform: translateY(-20px) rotate(0deg);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* След сердечек за курсором */
+.heart-trail {
+  position: fixed;
+  font-size: 1rem;
+  pointer-events: none;
+  z-index: 999;
+  animation: heartTrail 0.8s ease-out forwards;
+}
+
+@keyframes heartTrail {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(0.3);
+    opacity: 0;
+  }
+}
